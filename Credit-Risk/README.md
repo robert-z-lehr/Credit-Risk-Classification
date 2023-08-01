@@ -1,114 +1,28 @@
-Background
-In this Challenge, you’ll use various techniques to train and evaluate a model based on loan risk. You’ll use a dataset of historical lending activity from a peer-to-peer lending services company to build a model that can identify the creditworthiness of borrowers.
+# The Credit Risk Classification Project
 
-Before You Begin
-Create a new repository for this project called credit-risk-classification. Do not add this homework to an existing repository.
+## An Overview of the Analysis
 
-Clone the new repository to your computer.
+ We worked with a dataset of historical lending activity from a peer-to-peer lending services company to build a model that can identify the creditworthiness of borrowers.
 
-Inside your credit-risk-classification repository, create a folder titled "Credit_Risk."
+- Data Reading and Preparation: Read the `Resources/lending_data.csv` into a Pandas DataFrame. The dataset contained information on loans, and the goal was to predict the credit risk level for each loan. The data was split into features (X) and labels (y) accordingly.
 
-Inside the "Credit_Risk" folder, add the credit_risk_classification.ipynb and lending_data.csv files found in the "Starter_Code.zip" file.
+- Data Splitting: The dataset was further split into training and testing sets using `train_test_split` from the `sklearn.model_selection` module, enabling the model to be trained on a portion of the data and evaluated on unseen data.
 
-Push your changes to GitHub.
+- Model Training and Evaluation - Using the Original Data: The logistic regression model was instantiated and fitted using the original training data (`X_train` and `y_train`). The model's performance was evaluated using metrics such as balanced accuracy, precision, recall, and classification report, providing insights into the model's ability to classify healthy and high-risk loans.
 
-Files
-Download the following files to help you get started:
+- Data Resampling with RandomOverSampler: To address the class imbalance issue, the `RandomOverSampler` from the `imbalanced-learn` library was used to create synthetic samples of the minority class (high-risk loans) to balance the class distribution.
 
-Module 20 Challenge filesLinks to an external site.
-Instructions
-The instructions for this Challenge are divided into the following subsections:
+Model Training and Evaluation -Using the Resampled Data: The logistic regression model was fitted again using the resampled training data (`X_train_resampled` and `y_train_resampled`). The model's performance was evaluated on the testing data using the same metrics as before.
 
-Split the Data into Training and Testing Sets
+## Results
 
-Create a Logistic Regression Model with the Original Data
+ In the original data, the first model achieved a balanced accuracy score of `0.9520`, indicating good overall performance. The model displayed high precision `(0.85)` and recall `(0.91)` for class 1, suggesting it can effectively identify high-risk loans. However, after resampling the data, the resampled data model showed improvement, with a significantly higher balanced accuracy score of `0.9937`. The resampled model performed even better in classifying both healthy and high-risk loans, with a minor decrease in precision to `0.84` and significant improvement in recall to `0.99` for class 1. Overall, the second model outperformed first, making it the recommended model to use for credit risk classification.
 
-Write a Credit Risk Analysis Report
+## Tools Used
 
-Split the Data into Training and Testing Sets
-Open the starter code notebook and use it to complete the following steps:
-
-Read the lending_data.csv data from the Resources folder into a Pandas DataFrame.
-
-Create the labels set (y) from the “loan_status” column, and then create the features (X) DataFrame from the remaining columns.
-
-NOTE
-A value of 0 in the “loan_status” column means that the loan is healthy. A value of 1 means that the loan has a high risk of defaulting.
-
-Split the data into training and testing datasets by using train_test_split.
-
-Create a Logistic Regression Model with the Original Data
-Use your knowledge of logistic regression to complete the following steps:
-
-Fit a logistic regression model by using the training data (X_train and y_train).
-
-Save the predictions for the testing data labels by using the testing feature data (X_test) and the fitted model.
-
-Evaluate the model’s performance by doing the following:
-
-Generate a confusion matrix.
-
-Print the classification report.
-
-Answer the following question: How well does the logistic regression model predict both the 0 (healthy loan) and 1 (high-risk loan) labels?
-
-Write a Credit Risk Analysis Report
-Write a brief report that includes a summary and analysis of the performance of the machine learning models that you used in this homework. You should write this report as the README.md file included in your GitHub repository.
-
-Structure your report by using the report template that Starter_Code.zip includes, ensuring that it contains the following:
-
-An overview of the analysis: Explain the purpose of this analysis.
-
-The results: Using a bulleted list, describe the accuracy score, the precision score, and recall score of the machine learning model.
-
-A summary: Summarize the results from the machine learning model. Include your justification for recommending the model for use by the company. If you don’t recommend the model, justify your reasoning.
-
-Requirements
-Split the Data into Training and Testing Sets (30 points)
-To receive all points, you must:
-
-Read the lending_data.csv data from the Resources folder into a Pandas DataFrame. (5 points)
-
-Create the labels set (y) from the “loan_status” column, and then create the features (X) DataFrame from the remaining columns. (10 points)
-
-Split the data into training and testing datasets by using train_test_split. (15 points)
-
-Create a Logistic Regression Model (30 points)
-To receive all points, you must:
-
-Fit a logistic regression model by using the training data (X_train and y_train). (10 points)
-
-Save the predictions on the testing data labels by using the testing feature data (X_test) and the fitted model. (5 points)
-
-Evaluate the model’s performance by doing the following:
-
-Generate a confusion matrix. (5 points)
-
-Generate a classification report. (5 points)
-
-Answer the following question: How well does the logistic regression model predict both the 0 (healthy loan) and 1 (high-risk loan) labels? (5 points)
-
-Write a Credit Risk Analysis Report (20 points)
-To receive all points, you must:
-
-Provide an overview that explains the purpose of this analysis. (5 points)
-
-Using a bulleted list, describe the accuracy, precision, and recall scores of the machine learning model. (5 points)
-
-Summarize the results from the machine learning model. Include your justification for recommending the model for use by the company. If you don’t recommend the model, justify your reasoning. (10 points)
-
-Coding Conventions and Formatting (10 points)
-To receive all points, you must:
-
-Place imports at the top of the file, just after any module comments and docstrings and before module globals and constants. (3 points)
-
-Name functions and variables with lowercase characters, with words separated by underscores. (2 points)
-
-Follow DRY (Don’t Repeat Yourself) principles, creating maintainable and reusable code. (3 points)
-
-Use concise logic and creative engineering where possible. (2 points)
-
-Code Comments (10 points)
-To receive all points, your code must:
-
-Be well commented with concise, relevant notes that other developers can understand. (10 points)
+- **Python:** Programming language used for data manipulation, machine learning, and evaluation.
+- **Jupyter Notebook:** Interactive environment for running and documenting code.
+- **Libraries:** Numpy, Pandas, Scikit-learn, and Imbalanced-learn for data handling, machine learning, and dealing with imbalanced datasets.
+- **Logistic Regression:** Machine learning algorithm used for binary classification.
+- **Data Splitting:** Utilizing train-test split to divide the data into training and testing sets.
+- **Metrics:** Balanced Accuracy Scoree, Confusion Matrix, Classification Report
